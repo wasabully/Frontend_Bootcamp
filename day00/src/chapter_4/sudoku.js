@@ -28,39 +28,102 @@
 // функция, реализующая логику решения Судоку с помощью метода backtracking.
 // основная функция, которая связывает всё вместе, принимает строку и возвращает решённое Судоку или сообщение о том, что решение не найдено.
 
-  
-  function stringToBoard(sudokuString) {
-    const board = [];
 
-    for(let i = 0; i < sudokuString.length; i += 9){
-        board.push(sudokuString.slice(i, i + 9).split(''));
+const GRID_SIZE = 9;
+const BOX_SIZE = 3;
+
+function stringToBoard(sudokuString) {
+    const board = [];
+    for (let i = 0; i < sudokuString.length; i += GRID_SIZE) {
+        board.push(sudokuString.slice(i, i + GRID_SIZE).split(''));
     }
-    return board
-  }
-  
-  function prettyBoard(board) {
+    return board;
+}
+
+function prettyBoard(board) {
     let formattedBoard = '';
     
-    for(let row = 0; row < 9; row++){
-        if(row % 3 === 0 && row !== 0){
-            formattedBoard += '------+-------+------\n';  
+    formattedBoard += ('+----------------------+\n');
+
+    for (let row = 0; row < GRID_SIZE; row++) {
+        if (row % BOX_SIZE === 0 && row !== 0) {
+            formattedBoard += '+------+-------+-------+\n';
         }
-        for(let col = 0; col < 9; col++){
-            if(col % 3 === 0 && col !== 0){
+        formattedBoard += '|'
+        for (let col = 0; col < GRID_SIZE; col++) {
+            if (col % BOX_SIZE === 0 && col !== 0) {
                 formattedBoard += '| ';
+            }
+            formattedBoard += board[row][col] + ' ';
+        }
+        formattedBoard += '|\n';
+    }
+    formattedBoard += ('+----------------------+\n');
+    
+    return formattedBoard;
+}
+
+function isNumberValid(board, row, col, num) {
+    num = String(num);
+
+
+    for (let i = 0; i < GRID_SIZE; i++) {
+        if (board[row][i] === num) {
+            return false;
+        }
+    }
+
+
+    for (let i = 0; i < GRID_SIZE; i++) {
+        if (board[i][col] === num) {
+            return false;
+        }
+    }
+
+    
+    const startRow = Math.floor(row / BOX_SIZE) * BOX_SIZE;
+    const startCol = Math.floor(col / BOX_SIZE) * BOX_SIZE;
+
+    for (let i = 0; i < BOX_SIZE; i++) {
+        for (let j = 0; j < BOX_SIZE; j++) {
+            if (board[startRow + i][startCol + j] === num) {
+                return false;
             }
         }
     }
-    return formattedBoard; 
-  }
+    return true;
+}
 
+function solveSudoku(board) {
+    for (let row = 0; row < GRID_SIZE; row++) {
+        for (let col = 0; col < GRID_SIZE; col++) {
+            if (board[row][col] === '-') {
+                for (let num = 1; num <= GRID_SIZE; num++) {
+                    if (isNumberValid(board, row, col, num)) {
+                        board[row][col] = String(num);
 
+                        if (solveSudoku(board)) {
+                            return true;
+                        }
 
-  const sudokuString = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
-  console.log(stringToBoard(sudokuString));
+                        board[row][col] = '-';
+                    }
+                }
+                return false; 
+            }
+        }
+    }
+    return true;
+}
 
-  console.log(prettyBoard(sudokuString));
-  
+function solve(sudokuString) {
+    const board = stringToBoard(sudokuString);
+    return solveSudoku(board) ? prettyBoard(board) : "Не удалось решить Судоку";
+}
+
+const sudokuString = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
+console.log(solve(sudokuString));
+
 
 // Ниже представленны тестовые данные для вашей функции, они имеют 3 уровня сложности.
 // * Пять головоломок могут быть решены с помощью базовой логики.
