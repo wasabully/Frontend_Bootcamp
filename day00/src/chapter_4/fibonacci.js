@@ -1,18 +1,16 @@
 // Напишите функицю, которая принимает индекс числа из ряда Фибоначчи и возвращает его значение.
 // Предположим, что ряд Фибоначчи начинается с 0 индекса.
 
-
 function fibo(index) {
+	let a = 1,
+		b = 1;
 
-    let a = 1, b = 1;
-
-   for(let i = 2; i <= index; i++) {
-    let c = a + b;
-    a = b;
-    b = c;
-   }
-   return b;
+	for (let i = 2; i <= index; i++) {
+		let c = a + b;
+		a = b;
+		b = c;
+	}
+	return b;
 }
 
-
-console.log(fibo(5)); // Вернет 8 
+console.log(fibo(5)); // Вернет 8

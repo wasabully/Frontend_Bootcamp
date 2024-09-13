@@ -5,15 +5,11 @@
 // Тут, возможно, поможет рекурсия.
 
 function paskalsTriangle(n, k) {
-    
-    if (k === 0 || k === n) {
-        return 1;
-    }
+	if (k === 0 || k === n) {
+		return 1;
+	}
 
-    return paskalsTriangle(n - 1, k - 1) + paskalsTriangle(n - 1, k);
+	return paskalsTriangle(n - 1, k - 1) + paskalsTriangle(n - 1, k);
 }
 
-
-
-
-console.log(paskalsTriangle(3,2)); // 3
+console.log(paskalsTriangle(3, 2)); // 3

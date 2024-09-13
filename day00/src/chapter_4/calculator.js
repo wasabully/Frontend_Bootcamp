@@ -4,12 +4,12 @@
 // Также надо написать 4 функции основных арифмитических операторов, которые принимают в качестве аргумента первое число, а возвращают функцию, которая принимает в качестве аргумента второе число и возвращает их сумму/разность/частое/произведение.
 
 function number(n) {
-    return function(callback) {
-        if (typeof callback === 'function') {
-            return callback(n);
-        }
-        return n;
-    };
+	return function (callback) {
+		if (typeof callback === 'function') {
+			return callback(n);
+		}
+		return n;
+	};
 }
 
 const one = number(1);
@@ -23,27 +23,27 @@ const eight = number(8);
 const nine = number(9);
 
 function plus(a) {
-    return function(b) {
-        return a + b;
-    };
+	return function (b) {
+		return a + b;
+	};
 }
 
 function minus(a) {
-    return function(b) {
-        return a - b;
-    };
+	return function (b) {
+		return a - b;
+	};
 }
 
 function divide(a) {
-    return function(b) {
-        return a / b;
-    };
+	return function (b) {
+		return a / b;
+	};
 }
 
 function mult(a) {
-    return function(b) {
-        return a * b;
-    };
+	return function (b) {
+		return a * b;
+	};
 }
 
 console.log(one(mult(three(plus(four()))))); // В итоге вернется 7

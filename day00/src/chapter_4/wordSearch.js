@@ -7,20 +7,19 @@
 function searchSubString(puzzle, word) {}
 
 const examplePuzzle = [
-  ["b", "l", "g", "o", "l", "d", "s"],
-  ["x", "k", "q", "w", "i", "j", "p"],
-  ["a", "n", "w", "k", "k", "p", "n"],
-  ["h", "e", "e", "e", "k", "i", "l"],
-  ["q", "e", "k", "a", "y", "q", "a"],
-  ["h", "u", "h", "a", "e", "a", "u"],
-  ["k", "q", "j", "c", "c", "m", "r"],
+	['b', 'l', 'g', 'o', 'l', 'd', 's'],
+	['x', 'k', 'q', 'w', 'i', 'j', 'p'],
+	['a', 'n', 'w', 'k', 'k', 'p', 'n'],
+	['h', 'e', 'e', 'e', 'k', 'i', 'l'],
+	['q', 'e', 'k', 'a', 'y', 'q', 'a'],
+	['h', 'u', 'h', 'a', 'e', 'a', 'u'],
+	['k', 'q', 'j', 'c', 'c', 'm', 'r'],
 ];
 
 // Level 1
-searchSubString(examplePuzzle, "like"); // true
-searchSubString(examplePuzzle, "gold"); // true
-searchSubString(examplePuzzle, "queen"); // true
+searchSubString(examplePuzzle, 'like'); // true
+searchSubString(examplePuzzle, 'gold'); // true
+searchSubString(examplePuzzle, 'queen'); // true
 
 // Level 2
-searchSubString(examplePuzzle, "cake"); // true
-
+searchSubString(examplePuzzle, 'cake'); // true
