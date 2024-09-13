@@ -4,9 +4,16 @@
 // Предположим, что начальные координаты 0,0.
 // Тут, возможно, поможет рекурсия.
 
-function paskalsTriangle(x, y) {
+function paskalsTriangle(n, k) {
+    
+    if (k === 0 || k === n) {
+        return 1;
+    }
 
+    return paskalsTriangle(n - 1, k - 1) + paskalsTriangle(n - 1, k);
 }
 
 
-paskalsTriangle(3,2) // 3
+
+
+console.log(paskalsTriangle(3,2)); // 3
