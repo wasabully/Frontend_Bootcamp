@@ -4,7 +4,15 @@
 
 function fibo(index) {
 
+    let a = 1, b = 1;
+
+   for(let i = 2; i <= index; i++) {
+    let c = a + b;
+    a = b;
+    b = c;
+   }
+   return b;
 }
 
 
-fibo(5) // Вернет 8 
+console.log(fibo(5)); // Вернет 8 
