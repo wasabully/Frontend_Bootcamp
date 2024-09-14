@@ -4,7 +4,83 @@
 // - Второй уровень дополнительно включает в себя поиск по диагонали
 // - Слова могут быть записаны слева направо и наоборот.
 
-function searchSubString(puzzle, word) {}
+const searchSubString = (puzzle, word) => {
+	const totalRows = puzzle.length;
+	const totalCols = puzzle[0].length;
+
+	for (let row = 0; row < totalRows; row++) {
+		const currentRowString = puzzle[row].join('');
+		const reversedRowString = currentRowString.split('').reverse().join('');
+
+		if (currentRowString.includes(word) || reversedRowString.includes(word)) {
+			return true;
+		}
+	}
+
+	for (let col = 0; col < totalCols; col++) {
+		let currentColString = '';
+
+		for (let row = 0; row < totalRows; row++) {
+			currentColString += puzzle[row][col];
+		}
+
+		const reversedColString = currentColString.split('').reverse().join('');
+
+		if (currentColString.includes(word) || reversedColString.includes(word)) {
+			return true;
+		}
+	}
+
+	for (let startRow = 0; startRow < totalRows; startRow++) {
+		for (let startCol = 0; startCol < totalCols; startCol++) {
+			let diagonalString = '';
+
+			for (
+				let i = 0;
+				startRow + i < totalRows && startCol + i < totalCols;
+				i++
+			) {
+				diagonalString += puzzle[startRow + i][startCol + i];
+			}
+
+			const reversedDiagonalString = diagonalString
+				.split('')
+				.reverse()
+				.join('');
+
+			if (
+				diagonalString.includes(word) ||
+				reversedDiagonalString.includes(word)
+			) {
+				return true;
+			}
+		}
+	}
+
+	for (let startRow = totalRows - 1; startRow >= 0; startRow--) {
+		for (let startCol = 0; startCol < totalCols; startCol++) {
+			let diagonalString = '';
+
+			for (let i = 0; startRow - i >= 0 && startCol + i < totalCols; i++) {
+				diagonalString += puzzle[startRow - i][startCol + i];
+			}
+
+			const reversedDiagonalString = diagonalString
+				.split('')
+				.reverse()
+				.join('');
+
+			if (
+				diagonalString.includes(word) ||
+				reversedDiagonalString.includes(word)
+			) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+};
 
 const examplePuzzle = [
 	['b', 'l', 'g', 'o', 'l', 'd', 's'],
@@ -17,9 +93,9 @@ const examplePuzzle = [
 ];
 
 // Level 1
-searchSubString(examplePuzzle, 'like'); // true
-searchSubString(examplePuzzle, 'gold'); // true
-searchSubString(examplePuzzle, 'queen'); // true
+console.log(searchSubString(examplePuzzle, 'like')); // true
+console.log(searchSubString(examplePuzzle, 'gold')); // true
+console.log(searchSubString(examplePuzzle, 'queen')); // true
 
 // Level 2
-searchSubString(examplePuzzle, 'cake'); // true
+console.log(searchSubString(examplePuzzle, 'cake')); // true
