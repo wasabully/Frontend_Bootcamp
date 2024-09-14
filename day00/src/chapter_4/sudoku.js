@@ -31,6 +31,11 @@
 const GRID_SIZE = 9;
 const BOX_SIZE = 3;
 
+function solve(sudokuString) {
+	const board = stringToBoard(sudokuString);
+	return solveSudoku(board) ? prettyBoard(board) : 'Не удалось решить Судоку';
+}
+
 function stringToBoard(sudokuString) {
 	const board = [];
 	for (let i = 0; i < sudokuString.length; i += GRID_SIZE) {
@@ -110,11 +115,6 @@ function solveSudoku(board) {
 		}
 	}
 	return true;
-}
-
-function solve(sudokuString) {
-	const board = stringToBoard(sudokuString);
-	return solveSudoku(board) ? prettyBoard(board) : 'Не удалось решить Судоку';
 }
 
 const sudokuString =
