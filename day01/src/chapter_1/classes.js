@@ -53,6 +53,7 @@ class Employee {
 	}
 }
 
+// export default Employee;
 // проверка
 const employee = new Employee('John', 'L1', ['JavaScript'], 'Google');
 

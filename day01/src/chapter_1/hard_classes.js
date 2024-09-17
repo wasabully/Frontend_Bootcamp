@@ -48,7 +48,7 @@
 
 */
 
-import { Employee } from "./classes";
+import { Employee } from './classes';
 
 /* Св-ва и методы класса
 companyName - string
@@ -67,12 +67,31 @@ addProject(Project) - в кач-ве аргумента принимает эк�
 getMembersQuantity()
 completeProject()
 */
-export class Company {
 
+class Company {
+	constructor(companyName) {
+		this.companyName = companyName;
+		this.currentProjects = [];
+		this.completedProjects = [];
+		this.staff = {
+			developers: {
+				frontend: [],
+				backend: [],
+			},
+			managers: [],
+		};
+	}
+
+	addNewCompanyMember(member) {}
+
+	addProject(project) {}
+
+	getMembersQuantity() {}
+
+	completeProject(project) {}
 }
 
-
- /*
+/*
 - projectName - string
 - minQualification -string
 - team -  {
@@ -86,16 +105,12 @@ export class Company {
 addNewProjectMember(Developer) - Метод внутри которого вызывается проверка менеджера на то, подходит ли сотрудник проекту. Если подходит, то команда расширяется, иначе нет.
 */
 
-export class Project {
-
-}
+export class Project {}
 /*
 projectQuantity - number
 checkMember(minQualification, member) - в качестве аргумента принимается строка ('L1'/'L2'/'L3'/'L4') и BackendDeveloper || FrontendDeveloper
 */
-export class Manager extends Employee {
-
-}
+export class Manager extends Employee {}
 
 /*
 stack - массив строк
@@ -104,9 +119,7 @@ stack - массив строк
 expandStack(newTech) - в кач-ве аргумента принимает строку
 */
 
-export class FrontendDeveloper extends Employee {
-
-}
+export class FrontendDeveloper extends Employee {}
 
 /*
 stack - массив строк
@@ -115,6 +128,4 @@ stack - массив строк
 expandStack(newTech) - в кач-ве аргумента принимает строку
 */
 
-export class BackendDeveloper extends Employee {
-
-}
+export class BackendDeveloper extends Employee {}
