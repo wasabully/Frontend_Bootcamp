@@ -51,9 +51,14 @@ class Company {
 		}
 	}
 
-	addProject(project) {}
+	addProject(project) {
+		this.project = project;
+		this.project = this.currentProjects;
+	}
 
-	getMembersQuantity() {}
+	getMembersQuantity() {
+		return sumSalaries(member);
+	}
 
 	completeProject(project) {}
 }

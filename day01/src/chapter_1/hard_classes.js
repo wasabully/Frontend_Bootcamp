@@ -82,13 +82,37 @@ class Company {
 		};
 	}
 
-	addNewCompanyMember(member) {}
+	addNewCompanyMember(member) {
+		if (member instanceof FrontendDeveloper) {
+			this.staff.developers.frontend.push(member);
+		} else if (member instanceof BackendDeveloper) {
+			this.staff.developers.backend.push(member);
+		} else if (member instanceof Manager) {
+			this.staff.managers.push(member);
+		}
+	}
 
-	addProject(project) {}
+	addProject(project) {
+		if (project instanceof Project) {
+			this.currentProjects.push(project);
+		} else {
+			console.log('err');
+		}
+	}
 
-	getMembersQuantity() {}
+	getMembersQuantity() {
+		return (
+			this.staff.developers.frontend.length +
+			this.staff.developers.backend.length +
+			this.staff.managers.length
+		);
+	}
 
-	completeProject(project) {}
+	completeProject(project) {
+		if (project instanceof Project) {
+			this.currentProjects = this.completedProjects;
+		}
+	}
 }
 
 /*
