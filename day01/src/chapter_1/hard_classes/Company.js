@@ -26,7 +26,6 @@ addProject(project) — метод для добавления нового пр
 getMembersQuantity() — метод возвращает общее количество сотрудников компании (сумма всех разработчиков и менеджеров).
 completeProject(project) — метод перемещает проект из currentProjects в completedProjects. Количество завершенных проектов у членов команды увеличивается.
 */
-
 class Company {
 	constructor(companyName) {
 		this.companyName = companyName;
@@ -42,23 +41,35 @@ class Company {
 	}
 
 	addNewCompanyMember(member) {
-		if (
-			member == this.FrontendDeveloper ||
-			member == this.BackendDeveloper ||
-			this.Manager
-		) {
-			this.member == this.companyName;
+		if (member instanceof FrontendDeveloper) {
+			this.staff.developers.frontend.push(member);
+		} else if (member instanceof BackendDeveloper) {
+			this.staff.developers.backend.push(member);
+		} else if (member instanceof Manager) {
+			this.staff.managers.push(member);
 		}
 	}
 
 	addProject(project) {
-		this.project = project;
-		this.project = this.currentProjects;
+		if (project instanceof Project) {
+			this.currentProjects.push(project);
+		} else {
+			console.log('err');
+		}
 	}
 
 	getMembersQuantity() {
-		return sumSalaries(member);
+		return (
+			this.staff.developers.frontend.length +
+			this.staff.developers.backend.length +
+			this.staff.managers.length
+		);
 	}
 
-	completeProject(project) {}
+	//completeProject(project) — метод перемещает проект из currentProjects в completedProjects. Количество завершенных проектов у членов команды увеличивается.
+	completeProject(project) {
+		if (project instanceof Project) {
+			const index = 
+		}
+	}
 }
